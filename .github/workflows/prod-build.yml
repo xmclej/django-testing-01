@@ -1,0 +1,16 @@
+name: Prod - Build Stack
+
+on:
+  workflow_dispatch:
+  # workflow_call:
+
+jobs:
+  build-production:
+    runs-on: self-hosted
+    steps:
+      # Checkout code to _work directory
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build the Stack
+        run: docker-compose -f production.yml up -d --force-recreate
